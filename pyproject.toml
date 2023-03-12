@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "to-do-list"
+version = "0.1.0"
+description = ""
+authors = ["alexeydoronin <neonixys@mail.ru>"]
+readme = "README.md"
+packages = [{include = "to_do_list" }]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+django = "^4.1.7"
+envparse = "^0.2.0"
+env = "^0.1.0"
+psycopg2-binary = "^2.9.5"
+gunicorn = "^20.1.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

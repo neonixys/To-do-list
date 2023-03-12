@@ -1,0 +1,12 @@
+## ignore all
+
+**
+
+# expect
+!to_do_list/**
+!entrypoint.sh
+!manage.py
+!poetry.lock
+!pyproject.toml
+
+

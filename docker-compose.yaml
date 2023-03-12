@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:12.4-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - to_do_list_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}
+      timeout: 3s
+      retries: 10
+      interval: 3s
+
+  api:
+    build: .
+    env_file: .env
+    environment:
+      POSTGRES_HOST: db
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./to_do_list:/opt/to_do_list/
+
+
+
+  frontend:
+    image: sermalenk/skypro-front:lesson-34
+    ports:
+      - "80:80"
+    depends_on:
+      api:
+        condition: service_started
+
+volumes:
+  to_do_list_pg_data:
+
+
+
