@@ -4,14 +4,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
+      - name: clone code
         uses: actions/checkout@v2
-      - name: build
+      - name: docker build
         run: docker build -t neonixys/to_do_list:$GITHUB_REF_NAME-$GITHUB_RUN_ID .
-      - name: login
-        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_TOKEN }}
-      - name: push
+      - name: docker login
+        run: echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKER_USER }} --password-stdin
+      - name: docker push
         run: docker push neonixys/to_do_list:$GITHUB_REF_NAME-$GITHUB_RUN_ID
+
 #  deploy:
 #    needs: build
 #    runs-on: ubuntu-latest
