@@ -7,11 +7,11 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
       - name: build
-        run: docker build -t alex85doronin/to_do_list:$GITHUB_REF_NAME-$GITHUB_RUN_ID .
+        run: docker build -t neonixys/to_do_list:$GITHUB_REF_NAME-$GITHUB_RUN_ID .
       - name: login
         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_TOKEN }}
       - name: push
-        run: docker push alex85doronin/to_do_list:$GITHUB_REF_NAME-$GITHUB_RUN_ID
+        run: docker push neonixys/to_do_list:$GITHUB_REF_NAME-$GITHUB_RUN_ID
 #  deploy:
 #    needs: build
 #    runs-on: ubuntu-latest
