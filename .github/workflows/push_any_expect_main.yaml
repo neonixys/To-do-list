@@ -9,7 +9,7 @@ jobs:
       - name: build
         run: docker build -t alex85doronin/to_do_list:$GITHUB_REF_NAME-$GITHUB_RUN_ID .
       - name: login
-        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
+        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_TOKEN }}
       - name: push
         run: docker push alex85doronin/to_do_list:$GITHUB_REF_NAME-$GITHUB_RUN_ID
 #  deploy:
