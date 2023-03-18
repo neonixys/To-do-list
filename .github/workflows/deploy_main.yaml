@@ -42,5 +42,5 @@ jobs:
           username: ${{ secrets.SERVER_USER  }}
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
-            cd test_app
+            cd to_do_list_app
             docker-compose up -d
