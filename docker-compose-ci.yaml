@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+  app:
+    image: alex85doronin/to_do_list:$GITHUB_REF_NAME-$GITHUB_RUN_ID
+    ports:
+      - 8080:25000
+    environment:
+      - DB_USER=$DB_USER
+      - DB_PASSWORD=$DB_PASSWORD
+      - DB_NAME=$DB_NAME
+      - DB_HOST=db
+    depends_on:
+      - db
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_USER=$DB_USER
+      - POSTGRES_PASSWORD=$DB_PASSWORD
+      - POSTGRES_DB=$DB_NAME

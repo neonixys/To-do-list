@@ -60,3 +60,8 @@
 
 # Static 
     python manage.py collectstatic -c --no-input
+
+# Secrets
+    poetry add ansible-vault-win --group dev - формирование секретов
+    ansible-vault encrypt deploy/.env - зашифровываем файл .env
+    ansible-vault decrypt deploy/.env - расшифровать
