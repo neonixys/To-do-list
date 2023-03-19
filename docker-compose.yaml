@@ -19,7 +19,7 @@ services:
 
   api:
     build: .
-    env_file: .env
+    env_file: /.env
     environment:
       POSTGRES_HOST: db
     depends_on:
