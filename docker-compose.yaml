@@ -19,7 +19,8 @@ services:
 
   api:
     build: .
-    env_file: .env
+    env_file:
+      - ./.env.dev
     environment:
       POSTGRES_HOST: db
     depends_on:
