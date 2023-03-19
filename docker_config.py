@@ -1,0 +1,1 @@
+SQLALCHEMY_DATABASE_URI = "postgresql://user:pass@postgres/to-do-list"
