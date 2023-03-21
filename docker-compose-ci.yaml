@@ -3,6 +3,7 @@ version: '3.8'
 services:
   db:
     image: postgres:12.4
+    restart: always
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_DB: ${POSTGRES_DB}
@@ -17,9 +18,8 @@ services:
 
   api:
     image: alex85doronin/to_do_list:latest
+    restart: always
     env_file: .env
-    environment:
-      POSTGRES_HOST: db
     depends_on:
       db:
         condition: service_healthy

@@ -2,7 +2,7 @@ name: Build and Deploy
 on: [ push ]
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: clone code
         uses: actions/checkout@v2
