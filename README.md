@@ -65,3 +65,10 @@
     poetry add ansible-vault-win --group dev - формирование секретов
     ansible-vault encrypt deploy/.env - зашифровываем файл .env
     ansible-vault decrypt deploy/.env - расшифровать
+
+
+# Docker-compose file
+    docker-compose down --rmi local -v - удаление контейнеров и volume
+# Создать пользователя в программе через терминал
+    docker-compose exec api /bin/bash - проходим до файл docker-compose 
+    ppython3 manage.py createsuperuser - создаем суперпользователя
