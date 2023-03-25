@@ -59,7 +59,7 @@
     cd /etc/nginx/conf.d --> ls --> cat --> default.conf - просмотр файла конфигурации
 
 # Static 
-    python manage.py collectstatic -c --no-input
+    python3 manage.py collectstatic -c --no-input
 
 # Secrets
     poetry add ansible-vault-win --group dev - формирование секретов

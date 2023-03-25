@@ -12,6 +12,9 @@ jobs:
         run: echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKER_USER }} --password-stdin
       - name: docker push
         run: docker push alex85doronin/to_do_list:$GITHUB_REF_NAME-$GITHUB_RUN_ID
+      - name: docker push
+        run: docker push alex85doronin/to_do_list:latest
+
 
 
   deploy:
