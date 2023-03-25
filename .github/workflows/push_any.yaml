@@ -1,9 +1,9 @@
-name: Build
+name: default
 
 on:
   push:
-    branches-ignore:
-      - main
+    branches:
+    - '*'
 
 jobs:
   build:
