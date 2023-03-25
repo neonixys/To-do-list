@@ -47,7 +47,7 @@ services:
       collect_static:
         condition: service_completed_successfully
     volumes:
-      - django_static:/usr/share/nginx/html/static
+      - django_static:/usr/share/nginx/html/static/
       - ./deploy/nginx.conf:/etc/nginx/conf.d/default.conf
 
 volumes:
