@@ -1,5 +1,5 @@
 .idea
-.env
+/.env
 .coverage
 .python-version
 __pycache__

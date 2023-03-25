@@ -39,7 +39,7 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           password: ${{ secrets.SERVER_PASSWORD }}
           source: 'deploy/*'
-          target: 'to_do_list_34'
+          target: 'to_do_list'
           strip_components: 1
         name: Run compose
       - uses: appleboy/ssh-action@master
@@ -48,7 +48,7 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
-            cd to_do_list_34
+            cd to_do_list
             docker-compose pull
             docker-compose up -d
           name: Cleanup after deploy
