@@ -1,9 +1,9 @@
 name: Build
 
 on:
-    push:
-        branches-ignore:
-            - main
+  push:
+    branches-ignore:
+    - main
 jobs:
   build:
     runs-on: ubuntu-latest
