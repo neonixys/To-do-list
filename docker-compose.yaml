@@ -53,3 +53,4 @@ services:
 volumes:
   to_do_list_pg_data:
   django_static:
+
