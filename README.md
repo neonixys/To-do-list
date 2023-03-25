@@ -1,8 +1,8 @@
 # to_do_list
-    
+
     Приложение для отслеживания выполнения задач
 
-# Cтек 
+# Cтек
      Django-4.0.1, Python 3.10.7, postgres (PostgreSQL) 14.6 (Homebrew)
 
 # Виртуальное окружение
@@ -17,12 +17,12 @@
     poetry add envparse
 
 # Запуск проекта
-    python manage.py startapp to_do_list 
+    python manage.py startapp to_do_list
     python manage.py startapp core (должен находится внутри приложения to_do_list)
 
-# POSTGRES 
+# POSTGRES
     docker images | grep postgres - postgres latest version
-    docker-compose config - конфигурация 
+    docker-compose config - конфигурация
 
 # Запуск и просмотр запущенной базы
     docker-compose up -d db - запуск
@@ -36,11 +36,11 @@
     ./manage.py makemigrations --dry-run - что произайдет, если мы сделаем миграцию
     ./manage.py makemigrations- создаем миграции
     ./manage.py migrate - накатываем миграции
- 
+
 # Create Superuser
     python manage.py createsuperuser
 
-# Runserver 
+# Runserver
     python manage.py runserver
 
 # Docker сборка
@@ -58,7 +58,7 @@
     docker-compose exec frontend /bin/sh - вход в контенер фронтп
     cd /etc/nginx/conf.d --> ls --> cat --> default.conf - просмотр файла конфигурации
 
-# Static 
+# Static
     python3 manage.py collectstatic -c --no-input
 
 # Secrets

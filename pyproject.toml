@@ -13,6 +13,7 @@ envparse = "^0.2.0"
 env = "^0.1.0"
 psycopg2-binary = "^2.9.5"
 gunicorn = "^20.1.0"
+pre-commit = "^3.2.0"
 
 
 [tool.poetry.group.dev.dependencies]
