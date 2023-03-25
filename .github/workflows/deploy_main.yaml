@@ -59,4 +59,4 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
-            docker system pron -a -f
+            docker system prune -a -f
