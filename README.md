@@ -53,6 +53,7 @@
     python manage.py runserver - запуск сервера
     docker-compose exec api /bin/bash - вход в контейнер
     ls -la - просмотр что содержит
+    docker-compose down --rmi local -v - удаляем все контейнеры и volumes
 
 # Front
     docker-compose exec frontend /bin/sh - вход в контенер фронтп
@@ -69,6 +70,26 @@
 
 # Docker-compose file
     docker-compose down --rmi local -v - удаление контейнеров и volume
+
 # Создать пользователя в программе через терминал
-    docker-compose exec api /bin/bash - проходим до файл docker-compose 
+    docker-compose exec api /bin/bash - проходим до файл docker-compose
     ppython3 manage.py createsuperuser - создаем суперпользователя
+
+# DRF
+    poetry add djangorestframework - ставим DRF
+    poetry add django-extensions --group dev -     дополнения для DRF
+
+    ./manage.py show_urls - просмотреть urls
+    ./manage.py shell_plus
+                >>> User.objects.last()
+                <User: neonixys>
+                >>> user = User.objects.last()
+                 >>> user.password
+# Precommit
+    pre-commit run -a
+
+# Social
+    poetry add social-auth-app-django 
+
+
+ 
