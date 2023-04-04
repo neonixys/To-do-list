@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   db:
-    image: postgres:12.4-alpine
+    image: postgres:14.6-alpine
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_DB: ${POSTGRES_DB}
@@ -18,6 +18,7 @@ services:
       interval: 3s
 
   api:
+    platform: linux/amd64
     build: .
     env_file: .env
     environment:
@@ -34,11 +35,15 @@ services:
     build: .
     env_file: .env
     entrypoint: ' '
+    depends_on:
+      api:
+        condition: service_started
     volumes:
       - django_static:/opt/static/
     command: python3 manage.py collectstatic -c --no-input
+
   frontend:
-    image: sermalenk/skypro-front:lesson-34
+    image: sermalenk/skypro-front:lesson-35
     ports:
       - "80:80"
     depends_on:
@@ -53,4 +58,3 @@ services:
 volumes:
   to_do_list_pg_data:
   django_static:
-

@@ -1,5 +1,3 @@
-
-
 from pathlib import Path
 
 from envparse import env
@@ -8,7 +6,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 ENV_PATH = BASE_DIR.joinpath('.env')
 if ENV_PATH.is_file():
     env.read_envfile(ENV_PATH)
-
 
 SECRET_KEY = env.str('SECRET_KEY')
 
@@ -25,10 +22,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Third party apps
+    'drf_spectacular',
+    'rest_framework',
+    'social_django',
     # First party apps
     'to_do_list.core',
 
 ]
+if DEBUG:
+    INSTALLED_APPS += ['django_extensions']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -63,7 +65,6 @@ WSGI_APPLICATION = 'to_do_list.wsgi.application'
 
 AUTH_USER_MODEL = 'core.User'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
@@ -77,7 +78,6 @@ DATABASES = {
         'PORT': env.int('POSTGRES_PORT', default=5432),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -97,7 +97,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -109,7 +108,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
@@ -120,3 +118,37 @@ STATIC_ROOT = BASE_DIR.joinpath('static')
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+SOCIAL_AUTH_JSONFIELD_ENABLED = True
+SOCIAL_AUTH_JSONFIELD_CUSTOM = 'django.db.models.JSONField'
+
+SOCIAL_AUTH_VK_OAUTH2_KEY = env.str('VK_OAUTH2_KEY')
+SOCIAL_AUTH_VK_OAUTH2_SECRET = env.str('VK_OAUTH2_SECRET')
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.vk.VKOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/logged-in/'
+SOCIAL_AUTH_LOGIN_ERROR_URL = '/login-error/'
+SOCIAL_AUTH_VK_OAUTH2_SCOPE = ['email']
+SOCIAL_AUTH_GITHUB_SCOPE = ['email']
+SOCIAL_AUTH_VK_EXTRA_DATA = [('email', 'email'), ]
+SOCIAL_AUTH_NEW_USER_REDIRECT_URL = '/logged-in/'
+SOCIAL_AUTH_USER_MODEL = 'core.User'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    # OTHER REST FRAMEWORK SETTINGS
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+MIDDLEWARE += ['social_django.middleware.SocialAuthExceptionMiddleware']
+
+# settings.py
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Hunting API',
+    'DESCRIPTION': 'Awesome hunting project',
+    'VERSION': '1.0.0',
+}
