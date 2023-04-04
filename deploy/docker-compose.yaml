@@ -20,9 +20,9 @@ services:
     env_file: .env
     environment:
       POSTGRES_HOST: db
-    depends_on:
-      db:
-        condition: service_healthy
+#    depends_on:
+#      db:
+#        condition: service_healthy
 
   collect_static:
     image: alex85doronin/to_do_list:latest
