@@ -93,3 +93,4 @@
 
 
  
+rm to_do_list_app/ -f -r
