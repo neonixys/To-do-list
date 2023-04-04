@@ -145,7 +145,6 @@ REST_FRAMEWORK = {
 
 MIDDLEWARE += ['social_django.middleware.SocialAuthExceptionMiddleware']
 
-# settings.py
 
 SPECTACULAR_SETTINGS = {
     'TITLE': 'Hunting API',
