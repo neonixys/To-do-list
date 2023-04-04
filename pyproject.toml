@@ -8,16 +8,16 @@ packages = [{include = "to_do_list" }]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-django = "^4.1.7"
+django = "^4.2"
 envparse = "^0.2.0"
 env = "^0.1.0"
-psycopg2-binary = "^2.9.5"
 gunicorn = "^20.1.0"
-pre-commit = "^3.2.0"
+pre-commit = "^3.2.2"
 djangorestframework = "^3.14.0"
 django-extensions = "^3.2.1"
 social-auth-app-django = "^5.2.0"
 drf-spectacular = "^0.26.1"
+psycopg2-binary = "^2.9.6"
 
 
 [tool.poetry.group.dev.dependencies]
