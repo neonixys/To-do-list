@@ -73,7 +73,7 @@
 
 # Создать пользователя в программе через терминал
     docker-compose exec api /bin/bash - проходим до файл docker-compose
-    ppython3 manage.py createsuperuser - создаем суперпользователя
+    python3 manage.py createsuperuser - создаем суперпользователя
 
 # DRF
     poetry add djangorestframework - ставим DRF
