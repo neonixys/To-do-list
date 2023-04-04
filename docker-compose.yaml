@@ -2,13 +2,13 @@ version: '3.8'
 
 services:
   db:
-    image: postgres:14.6
+    image: postgres:15.1-alpine
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_DB: ${POSTGRES_DB}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
-      - "${POSTGRES_PORT:-5432}:5432"
+      - "5432:5432"
     volumes:
       - to_do_list_pg_data:/var/lib/postgresql/data
     healthcheck:
