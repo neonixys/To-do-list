@@ -18,6 +18,7 @@ django-extensions = "^3.2.1"
 social-auth-app-django = "^5.2.0"
 drf-spectacular = "^0.26.1"
 psycopg2-binary = "^2.9.6"
+psycopg2 = "^2.9.6"
 
 
 [tool.poetry.group.dev.dependencies]
