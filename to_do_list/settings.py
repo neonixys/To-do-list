@@ -109,7 +109,6 @@ USE_TZ = True
 
 USE_I18N = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
@@ -143,6 +142,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     # OTHER REST FRAMEWORK SETTINGS
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
     # 'DEFAULT_AUTHENTICATION_CLASSES': [
     #     # 'rest_framework.authentication.SessionAuthentication',
     #     'rest_framework.authentication.BasicAuthentication',
@@ -151,9 +151,8 @@ REST_FRAMEWORK = {
 
 MIDDLEWARE += ['social_django.middleware.SocialAuthExceptionMiddleware']
 
-
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'Hunting API',
-    'DESCRIPTION': 'Awesome hunting project',
+    'TITLE': 'TO-DO-LIST',
+    'DESCRIPTION': 'Awesome to-do list',
     'VERSION': '1.0.0',
 }

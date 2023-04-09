@@ -49,8 +49,9 @@ class GoalCreateView(generics.CreateAPIView):
 class GoalListView(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = GoalSerializer
+
     filter_backends = [DjangoFilterBackend, OrderingFilter, SearchFilter]
-    filters_class = GoalDateFilter
+    filterset_class = GoalDateFilter
     ordering_fields = ["title", "created"]
     ordering = ["title"]
     search_fields = ["title", "description"]
@@ -73,6 +74,7 @@ class GoalView(RetrieveUpdateDestroyAPIView):
     def perform_destroy(self, instance: Goal) -> None:
         instance.status = Goal.Status.archived
         instance.save(update_fields=('status',))
+
 
 class GoalCommentCreateView(generics.CreateAPIView):
     permission_classes = [permissions.IsAuthenticated]

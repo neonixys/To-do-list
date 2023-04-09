@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import PROTECT
 
 from to_do_list.core.models import User
 
@@ -20,7 +21,7 @@ class GoalCategory(BaseModel):
     user = models.ForeignKey(User, verbose_name="Автор", on_delete=models.PROTECT)
     is_deleted = models.BooleanField(verbose_name="Удалена", default=False)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.title
 
 
@@ -38,13 +39,13 @@ class Goal(BaseModel):
         critical = 4, "Critical"
 
     title = models.CharField(verbose_name="Название", max_length=255)
+    user = models.ForeignKey(User, verbose_name="Автор", on_delete=models.PROTECT, related_name="goals")
     description = models.TextField(verbose_name="Описание", null=True, blank=True)
     category = models.ForeignKey(GoalCategory, verbose_name="Категория", on_delete=models.PROTECT, related_name="goals")
-    due_date = models.DateTimeField(verbose_name="Дата окончания", null=True, blank=True)
-    user = models.ForeignKey(User, verbose_name="Автор", on_delete=models.PROTECT, related_name="goals")
     status = models.PositiveSmallIntegerField(verbose_name="Статус", choices=Status.choices, default=Status.to_do)
     priority = models.PositiveSmallIntegerField(verbose_name="Приоритет", choices=Priority.choices,
                                                 default=Priority.medium)
+    due_date = models.DateField(verbose_name="Дата окончания", null=True, blank=True)
 
     class Meta:
         verbose_name = "Цель"
