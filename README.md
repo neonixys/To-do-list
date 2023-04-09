@@ -18,7 +18,8 @@
 
 # Запуск проекта
     python manage.py startapp to_do_list
-    python manage.py startapp core (должен находится внутри приложения to_do_list)
+    ./manage.py startapp core to_do_list/core (должен находится внутри приложения to_do_list)
+    ./manage.py startapp goals to_do_list/goals
 
 # POSTGRES
     docker images | grep postgres - postgres latest version
@@ -34,7 +35,7 @@
 
 # Миграции
     ./manage.py makemigrations --dry-run - что произайдет, если мы сделаем миграцию
-    ./manage.py makemigrations- создаем миграции
+    ./manage.py makemigrations -name 'Name of action in magration'- создаем миграции
     ./manage.py migrate - накатываем миграции
 
 # Create Superuser
@@ -68,7 +69,7 @@
     ansible-vault decrypt deploy/.env - расшифровать
 
 
-# Docker-compose file
+# Docker
     docker-compose down --rmi local -v - удаление контейнеров и volume
 
 # Создать пользователя в программе через терминал
@@ -91,6 +92,8 @@
 # Social
     poetry add social-auth-app-django 
 
+ # VM
+    rm to_do_list_app/ -f -r
 
- 
-rm to_do_list_app/ -f -r
+# Filters
+poetry add django-filter

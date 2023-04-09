@@ -24,9 +24,11 @@ INSTALLED_APPS = [
     # Third party apps
     'drf_spectacular',
     'rest_framework',
+    'django_filters',
     'social_django',
     # First party apps
     'to_do_list.core',
+    'to_do_list.goals',
 
 ]
 if DEBUG:
@@ -102,11 +104,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'ru'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Moscow'
+USE_TZ = True
 
 USE_I18N = True
 
-USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
@@ -141,6 +143,10 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     # OTHER REST FRAMEWORK SETTINGS
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    # 'DEFAULT_AUTHENTICATION_CLASSES': [
+    #     # 'rest_framework.authentication.SessionAuthentication',
+    #     'rest_framework.authentication.BasicAuthentication',
+    # ]
 }
 
 MIDDLEWARE += ['social_django.middleware.SocialAuthExceptionMiddleware']
