@@ -76,9 +76,9 @@ class GoalCategorySerializer(serializers.ModelSerializer):
             raise serializers.ValidationError('Доска удалена')
 
         if not BoardParticipant.objects.filter(
-            board_id=board.id,
-            user_id=self.context['request'].user.id,
-            role__in=[BoardParticipant.Role.owner, BoardParticipant.Role.writer]
+                board_id=board.id,
+                user_id=self.context['request'].user.id,
+                role__in=[BoardParticipant.Role.owner, BoardParticipant.Role.writer]
         ).exists():
             raise PermissionDenied
 
@@ -103,9 +103,9 @@ class GoalCreateSerializer(serializers.ModelSerializer):
             raise ValidationError('Категория не найдена')
 
         if not BoardParticipant.objects.filter(
-            board_id=category.board.id,
-            user_id=self.context['request'].user.id,
-            role__in=[BoardParticipant.Role.owner, BoardParticipant.Role.writer]
+                board_id=category.board.id,
+                user_id=self.context['request'].user.id,
+                role__in=[BoardParticipant.Role.owner, BoardParticipant.Role.writer]
         ).exists():
             raise PermissionDenied
 

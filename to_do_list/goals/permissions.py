@@ -1,19 +1,23 @@
 from typing import Any
 
+from rest_framework import permissions
 from rest_framework.permissions import IsAuthenticated, SAFE_METHODS, BasePermission
 from rest_framework.request import Request
 
-from to_do_list.goals.models import Board, BoardParticipant, GoalCategory
+from to_do_list.goals.models import BoardParticipant, GoalCategory, GoalComment
 
 
-class BoardPermissions(IsAuthenticated):
-
-    def has_object_remission(self, request: Request, view, obj: Board) -> bool:
-        _filters: dict[str: Any] = {'user_id': request.user.id, 'board_id': obj.id}
-        if request.metod not in SAFE_METHODS:
-            _filters['role'] = BoardParticipant.Role.owner
-
-        return BoardParticipant.objects.filter(**_filters).exists()
+class BoardPermissions(permissions.BasePermission):
+    def has_object_permission(self, request, view, obj):
+        if not request.user.is_authenticated:
+            return False
+        if request.method in permissions.SAFE_METHODS:
+            return BoardParticipant.objects.filter(
+                user=request.user, board=obj
+            ).exists()
+        return BoardParticipant.objects.filter(
+            user=request.user, board=obj, role=BoardParticipant.Role.owner
+        ).exists()
 
 
 class GoalCategoryPermissions(IsAuthenticated):
@@ -32,6 +36,15 @@ class IsOwnerOrReadOnly(BasePermission):
         if request.method in SAFE_METHODS:
             return True
         return obj.user.id == request.user.id
+
+
+class CommentPermissions(IsAuthenticated):
+    def has_object_permission(self, request: Request, view, goal_comment: GoalComment) -> bool:
+        _filters: dict[str: Any] = {'user_id': request.user.id, 'board_id': goal_comment.goal_id}
+        if request.method not in SAFE_METHODS:
+            _filters['role'] = BoardParticipant.Role.owner
+
+        return BoardParticipant.objects.filter(**_filters).exists()
 
 
 class GoalPermissions(IsAuthenticated):
