@@ -19,6 +19,6 @@ class GoalAdmin(admin.ModelAdmin):
 
 @admin.register(Board)
 class GoalCategoryAdmin(admin.ModelAdmin):
-    list_display = ('title', )
-    search_fields = ('title', )
+    list_display = ('title',)
+    search_fields = ('title',)
     list_filter = ('is_deleted',)
