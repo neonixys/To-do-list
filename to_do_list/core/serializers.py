@@ -64,4 +64,3 @@ class UpdatePasswordSerializer(serializers.Serializer):
         instance.set_password(validated_data['new_password'])
         instance.save(update_fields=('password',))
         return instance
-

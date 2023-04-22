@@ -7,7 +7,7 @@
 
 # Виртуальное окружение
       1. Создание окружения - python -m venv venv
-      2. Активация виртуального окружения - source venv/bin/activate
+      2. Активация виртуального окружения - source .venv/bin/activate
       3. Выход из виртуального окружения - deactivate
 
 # Установка зависимостей
@@ -90,7 +90,7 @@
     pre-commit run -a
 
 # Social
-    poetry add social-auth-app-django 
+    poetry add social-auth-app-django
 
  # VM
     rm to_do_list_app/ -f -r
