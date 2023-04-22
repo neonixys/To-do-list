@@ -94,6 +94,7 @@
 
  # VM
     rm to_do_list_app/ -f -r
+    rm -rf to_do_list/
 
 # Filters
 poetry add django-filter
