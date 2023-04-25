@@ -95,6 +95,35 @@
  # VM
     rm to_do_list_app/ -f -r
     rm -rf to_do_list/
+    
+    nano .ssh/known_hosts - удалить лишнии адреса
+
+    sudo su
+    adduser deploy # создаем сложный пароль, остальные значения можем оставить по умолчанию (просто нажимаем Enter)
+    usermod -aG sudo deploy # выдаем sudo права пользователю
+    nano /etc/ssh/sshd_config    и   nano /etc/ssh/sshd_config.d/50-cloud-init.conf # редактируем конфигурацию, чтобы разрешить SSH по логину и паролю
+    # Находим там строчку:
+    # PasswordAuthentication no
+    # Меняем на:
+    # PasswordAuthentication yes
+    # Сохраняем (:wq)
+    service ssh reload # перезапускаем демон
+
+    sudo su
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+    echo \
+      "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+      $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    apt-get update
+    apt-get install docker-ce docker-ce-cli containerd.io
+    
+    # устанавливаем docker-compose
+    curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    chmod +x /usr/local/bin/docker-compose
+    ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+
+    # добавляем пользователя в группу Dcoker
+    sudo usermod -aG docker deploy
 
 # Filters
 poetry add django-filter
