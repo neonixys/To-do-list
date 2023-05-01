@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     # First party apps
     'to_do_list.core',
     'to_do_list.goals',
+    'to_do_list.bot',
 
 ]
 if DEBUG:
@@ -156,3 +157,5 @@ SPECTACULAR_SETTINGS = {
     'DESCRIPTION': 'Awesome to-do list',
     'VERSION': '1.0.0',
 }
+
+BOT_TOKEN = env.str('BOT_TOKEN')
