@@ -120,23 +120,23 @@ class GoalSerializer(serializers.ModelSerializer):
         read_only_fields = ('id', 'created', 'updated', 'user')
         fields = '__all__'
 
-    def validate_category(self, value: GoalCategory):
-        if value.is_deleted:
-            raise ValidationError('Category not found')
-        if self.context['request'].user.id != value.user_id:
+
+    def validate_goal(self, goal: Goal):
+        if goal.is_deleted:
+            raise ValidationError('Цель не найдена')
+
+        if not BoardParticipant.objects.filter(
+                board_id=goal.board.id,
+                user_id=self.context['request'].user.id,
+                role__in=[BoardParticipant.Role.owner, BoardParticipant.Role.writer]
+        ).exists():
             raise PermissionDenied
-        return value
+
+        return goal
 
 
 class GoalCommentCreateSerializer(serializers.ModelSerializer):
     user = serializers.HiddenField(default=serializers.CurrentUserDefault())
-
-    def validate_goal(self, value: Goal) -> Goal:
-        if value.status == Goal.Status.archived:
-            raise ValidationError('Goal not found')
-        if self.context['request'].user.id != value.user_id:
-            raise PermissionDenied
-        return value
 
     class Meta:
         model = GoalComment
@@ -144,17 +144,31 @@ class GoalCommentCreateSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class GoalCommentSerializer(serializers.ModelSerializer):
+class GoalCommentSerializer(GoalCommentCreateSerializer):
     user = ProfileSerializer(read_only=True)
-
-    def validate_goal(self, value: Goal) -> Goal:
-        if value.status == Goal.Status.archived:
-            raise ValidationError('Goal not found')
-        if self.context['request'].user.id != value.user_id:
-            raise PermissionDenied
-        return value
 
     class Meta:
         model = GoalComment
         read_only_fields = ('id', 'goal', 'user', 'created', 'updated')
         fields = '__all__'
+
+    #
+    #     def validate_goal(self, value: Goal) -> Goal:
+    #         if value.status == Goal.Status.archived:
+    #             raise ValidationError('Goal not found')
+    #         if self.context['request'].user.id != value.user_id:
+    #             raise PermissionDenied
+    #         return value
+    #
+    def validate_comment(self, comment: GoalComment):
+        if comment.is_deleted:
+            raise ValidationError('Коммент не найден')
+
+        if not BoardParticipant.objects.filter(
+                board_id=comment.board.id,
+                user_id=self.context['request'].user.id,
+                role__in=[BoardParticipant.Role.owner, BoardParticipant.Role.writer]
+        ).exists():
+            raise PermissionDenied
+
+        return comment

@@ -86,8 +86,9 @@
                 <User: neonixys>
                 >>> user = User.objects.last()
                  >>> user.password
-# Precommit
-    pre-commit run -a
+# GIT
+    pre-commit run -a - прекоммит
+    git switch -c dev_38 
 
 # Social
     poetry add social-auth-app-django
@@ -126,4 +127,13 @@
     sudo usermod -aG docker deploy
 
 # Filters
-poetry add django-filter
+    poetry add django-filter
+
+# Telegram BOT t.me/adoronin_todolist_bot
+    Запрос к Telegram API - https://api.telegram.org/bot6036988019:AAHEvGh0mHA36rwXWEPIveyR-LbEpPwfvxI/getMe
+    long polling для получения уведомлений - https://api.telegram.org/bot6036988019:AAHEvGh0mHA36rwXWEPIveyR-LbEpPwfvxI/getUpdates(?timeout=30)
+    Отправка сообщения боту - https://api.telegram.org/bot6036988019:AAHEvGh0mHA36rwXWEPIveyR-LbEpPwfvxI/sendMessage?chat_id=632600126&text=hello
+
+# Poetry add
+    poetry add pydantic
+    poetry add requests
