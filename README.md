@@ -137,3 +137,17 @@
 # Poetry add
     poetry add pydantic
     poetry add requests
+
+# Shell commands
+    ./manage.py  shell_plus
+    from to_do_list.bot.tg.client import *
+    from django.conf import settings
+    settings.BOT_TOKEN
+    client = TgClient(settings.BOT_TOKEN)
+    client.get_updates(0, 10)
+    client.get_url(Command.GET_UPDATES)
+    client.send_message(632600126, 'Hello')
+
+
+# Bot
+    Add to config python file - runbot. Запуск скрипта manage.py с парметром runbot

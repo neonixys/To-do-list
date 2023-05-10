@@ -22,6 +22,7 @@ urlpatterns = [
     # path('core/', include(('to_do_list.core.urls', 'to_do_list.core'))),
     path('core/', include('to_do_list.core.urls')),
     path('goals/', include('to_do_list.goals.urls')),
+    path('bot/', include(('to_do_list.bot.urls', 'to_do_list.bot'))),
     path('admin/', admin.site.urls),
     path('oauth/', include('social_django.urls', namespace='social')),
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),

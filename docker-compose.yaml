@@ -32,6 +32,17 @@ services:
     volumes:
       - ./to_do_list:/opt/to_do_list/
 
+  bot:
+    build: .
+    env_file: .env
+    environment:
+      POSTGRES_HOST: db
+    depends_on:
+      db:
+        condition: service_healthy
+    command: python manage.py runbot
+
+
   collect_static:
     build: .
     env_file: .env
@@ -44,7 +55,7 @@ services:
     command: python3 manage.py collectstatic -c --no-input
 
   frontend:
-    image: sermalenk/skypro-front:lesson-37
+    image: sermalenk/skypro-front:lesson-38
     ports:
       - "80:80"
     depends_on:
