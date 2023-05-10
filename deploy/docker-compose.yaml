@@ -25,7 +25,7 @@ services:
         condition: service_healthy
 
   bot:
-    image: alex85doronin/to_do_list:lates
+    image: alex85doronin/to_do_list:latest
     env_file: .env
     environment:
       POSTGRES_HOST: db
