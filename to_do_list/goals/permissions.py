@@ -4,7 +4,7 @@ from rest_framework import permissions
 from rest_framework.permissions import IsAuthenticated, SAFE_METHODS, BasePermission
 from rest_framework.request import Request
 
-from to_do_list.goals.models import BoardParticipant, GoalCategory
+from to_do_list.goals.models import BoardParticipant, GoalCategory, GoalComment
 
 
 class BoardPermissions(permissions.BasePermission):
@@ -43,3 +43,12 @@ class GoalPermissions(IsAuthenticated):
             _filters['role__in'] = [BoardParticipant.Role.owner, BoardParticipant.Role.writer]
 
         return BoardParticipant.objects.filter(**_filters).exists()
+
+
+class CommentPermissions(permissions.IsAuthenticated):
+    def has_object_permission(self, request: Request, view: Any, obj: GoalComment) -> bool:
+        return request.method in permissions.SAFE_METHODS or BoardParticipant.objects.filter(
+            user=request.user,
+            board=obj.goal.category.board,
+            role__in=[BoardParticipant.Role.owner, BoardParticipant.Role.writer]
+        ).exists()

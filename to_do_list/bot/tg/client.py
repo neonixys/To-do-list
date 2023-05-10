@@ -29,11 +29,19 @@ class TgClient:
         return SendMessageResponse(**data)
 
     def get_url(self, command: Command):
-        return f'https://api.telegram.org/bot{self.token}/{command}'
+        return f'https://api.telegram.org/bot{self.token}/{command.value}'
 
     def _get(self, command: Command, **params: Any) -> dict:
         url = self.get_url(command)
         response = requests.get(url, params=params)
         if not response.ok:
+            # print(response)
             raise ValueError
         return response.json()
+
+
+# if __name__ == '__main__':
+#     from django.conf import settings
+#
+#     client = TgClient(settings.BOT_TOKEN)
+#     client.get_updates(0, 10)
