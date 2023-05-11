@@ -152,3 +152,4 @@
 
 # Bot
     Add to config python file - runbot. Запуск скрипта manage.py с парметром runbot
+    python manage.py runbot
