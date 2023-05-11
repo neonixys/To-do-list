@@ -24,6 +24,16 @@ services:
       db:
         condition: service_healthy
 
+  bot:
+    build: .
+    env_file: .env
+    environment:
+      POSTGRES_HOST: db
+    depends_on:
+      db:
+        condition: service_healthy
+    command: python manage.py runbot
+
   collect_static:
     image: alex85doronin/to_do_list:latest
     env_file: .env
