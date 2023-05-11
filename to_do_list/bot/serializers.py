@@ -8,12 +8,13 @@ from to_do_list.bot.models import TgUser
 
 
 class TgUserSerializer(serializers.ModelSerializer):
-    telegram_chat_id = serializers.SlugField(source='chat_id', read_only=True)
+    tg_id = serializers.IntegerField(source='chat_id', read_only=True)
+    user = serializers.CharField(source='user.username', read_only=True)
 
     class Meta:
         model = TgUser
-        fields = ('chat_id', 'telegram_user_id', 'user', 'verification_code')
-        read_only_fields = ('chat_id', 'telegram_user_id', 'user')
+        fields = ('tg_id', 'telegram_user_id', 'user', 'verification_code')
+        read_only_fields = ('tg_id', 'telegram_user_id', 'user')
 
     def validate_verification_code(self, value: str) -> str:
         try:
