@@ -46,8 +46,6 @@ services:
       api:
         condition: service_started
     command: python manage.py runbot
-    networks:
-      - bot_nw
 
   collect_static:
     image: alex85doronin/to_do_list:latest
