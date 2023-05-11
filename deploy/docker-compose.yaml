@@ -25,14 +25,15 @@ services:
         condition: service_healthy
 
   bot:
-    build: .
+    image: alex85doronin/to_do_list:latest
     env_file: .env
     environment:
       POSTGRES_HOST: db
     depends_on:
       db:
         condition: service_healthy
-    command: python manage.py runbot
+    restart: always
+    command: python3 manage.py runbot
 
   collect_static:
     image: alex85doronin/to_do_list:latest
