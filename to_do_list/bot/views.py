@@ -23,7 +23,7 @@ class VerificationView(UpdateAPIView):
     def perform_update(self, serializer) -> None:
         tg_user = serializer.save()
         tg_client = TgClient(settings.BOT_TOKEN)
-        tg_client.send_message(chat_id=tg_user.telegram_chat_id,
+        tg_client.send_message(chat_id=tg_user.chat_id,
                                text='''Аккаунт успешно привязан!\n
     Доступные команды:\n"/goals" — получить список целей\n"/create" — создать новую цель''')
 
