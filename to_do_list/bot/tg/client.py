@@ -9,6 +9,8 @@ from to_do_list.bot.tg.schemas import GetUpdatesResponse, SendMessageResponse
 class Command(str, Enum):
     GET_UPDATES = "getUpdates"
     SEND_MESSAGE = "sendMessage"
+    GET_GOALS = 'goals'
+    CREATE_GOAL = 'create'
 
 
 class TgClient:
