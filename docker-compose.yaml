@@ -32,16 +32,30 @@ services:
     volumes:
       - ./to_do_list:/opt/to_do_list/
 
+#  bot:
+#    build: .
+#    env_file: .env
+#    environment:
+#      POSTGRES_HOST: db
+#    depends_on:
+#      db:
+#        condition: service_healthy
+#    command: python manage.py runbot
+
   bot:
     build: .
-    env_file: .env
+    env_file:
+      - .env
     environment:
       POSTGRES_HOST: db
     depends_on:
       db:
         condition: service_healthy
+      api:
+        condition: service_started
+    volumes:
+      - ./bot:/opt/bot
     command: python manage.py runbot
-
 
   collect_static:
     build: .
