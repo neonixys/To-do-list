@@ -20,7 +20,7 @@ class Chat:
     def set_state(self, tg_client: TgClient) -> None:
         # Проверка юзера на наличие в базе / создание нового.
         tg_user, created = TgUser.objects.get_or_create(
-            telegream_chat_id=self.message.chat.id,
+            chat_id=self.message.chat.id,
             defaults={
                 'telegram_user_id': self.message.from_.id
             }

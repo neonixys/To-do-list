@@ -19,7 +19,7 @@ class BaseTgUserState:
 
     def send_message(self, text: Optional[str]) -> None:
         self.tg_client.send_message(
-            telegram_chat_id=int(self.tg_user.chat_id),
+            chat_id=int(self.tg_user.chat_id),
             text=text
         )
 
