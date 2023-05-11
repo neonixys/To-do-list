@@ -32,9 +32,9 @@ class NewUserState(BaseTgUserState):
 
     def __init__(self, tg_user: TgUser, tg_client: TgClient):
         super().__init__(tg_user, tg_client)
-        self._text = f'''Добро пожаловать в бот Alex_goals!
-Для продолжения работы необходимо привязать Ваш аккаунт adoronin.ga.
-Код для верификации: {self.get_verification_code()}.'''
+        self._text = f'''Добро пожаловать в бот ALEX_GOALS!
+    Для продолжения работы необходимо привязать 
+    Ваш аккаунт adoronin.ga Код для верификации: {self.get_verification_code()}.'''
 
 
 class UnverifiedUserState(BaseTgUserState):
