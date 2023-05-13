@@ -17,7 +17,7 @@ class CreateUserSerializer(serializers.ModelSerializer):
 
     def validate(self, attrs: dict) -> dict:
         if attrs['password'] != attrs['password_repeat']:
-            raise ValidationError('Passwords do not match')
+            raise ValidationError({'password_repeat': 'Passwords do not match'})
         return attrs
 
     def create(self, validated_data: dict) -> User:
