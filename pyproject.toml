@@ -4,7 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["alexeydoronin <neonixys@mail.ru>"]
 readme = "README.md"
-packages = [{include = "to_do_list" }]
+packages = [{ include = "to_do_list" }]
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -16,11 +16,18 @@ pre-commit = "^3.2.2"
 djangorestframework = "^3.14.0"
 django-extensions = "^3.2.1"
 social-auth-app-django = "^5.2.0"
-drf-spectacular = "^0.26.1"
 psycopg2-binary = "^2.9.6"
 django-filter = "^23.1"
 requests = "^2.28.2"
 pydantic = "^1.10.7"
+pytest = "^7.3.1"
+factory-boy = "^3.2.1"
+faker = "^18.7.0"
+pytest-factoryboy = "^2.5.1"
+pytest-django = "^4.5.2"
+pluggy = "^1.0.0"
+colorama = "^0.4.6"
+drf-spectacular = "^0.26.2"
 
 
 
@@ -28,8 +35,16 @@ pydantic = "^1.10.7"
 [tool.poetry.group.dev.dependencies]
 ansible-vault-win = "^1.0.0"
 django-extensions = "^3.2.1"
+pytest = "^7.3.1"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
+[tool.pytest.ini.options]
+DGANGO_SETTINGS_MODULE = 'to-do-list.settings'
+python_files = [
+    'tests.py',
+    'test_*.py',
+    '*_tests.py',
+]

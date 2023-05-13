@@ -153,3 +153,12 @@
 # Bot
     Add to config python file - runbot. Запуск скрипта manage.py с парметром runbot
     python manage.py runbot
+
+# TESTS
+    pytest . -vv - запускаем тесты
+    Добавляем в конфигурацию purest - Module name: tests.tests
+    faker -o faker.txt  - добавление файла faker.txt(просмотр, что может Faker)
+    pytest --fixtures - просмотр fixtures
+
+# URLS
+    ./manage.py show_urls

@@ -19,7 +19,7 @@ from django.urls import path, include
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
 urlpatterns = [
-    # path('core/', include(('to_do_list.core.urls', 'to_do_list.core'))),
+    path('core/', include(('to_do_list.core.urls', 'to_do_list.core'))),
     path('core/', include('to_do_list.core.urls')),
     path('goals/', include('to_do_list.goals.urls')),
     path('bot/', include(('to_do_list.bot.urls', 'to_do_list.bot'))),
