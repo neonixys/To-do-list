@@ -3,7 +3,7 @@
     Приложение для отслеживания выполнения задач
 
 # Cтек
-     Django-4.0.1, Python 3.10.7, postgres (PostgreSQL) 14.6 (Homebrew)
+     Python 3.10, Django, Docker, PostgreSQL, интеграции с VK, Telegram, frontend-частью приложения, tests
 
 # Виртуальное окружение
       1. Создание окружения - python -m venv venv
